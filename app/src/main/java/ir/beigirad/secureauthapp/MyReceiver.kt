@@ -27,7 +27,7 @@ class MyReceiver(val baseActivity: BaseActivity) {
         override fun onReceive(p0: Context?, p1: Intent?) {
             when (p1?.action) {
                 screenFilter -> {
-                    baseActivity.gotoAuth(baseActivity)
+                    baseActivity.gotoAuth(baseActivity,true)
                 }
 
                 closeFilter -> {

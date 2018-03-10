@@ -1,6 +1,5 @@
 package ir.beigirad.backbuttonhandler
 
-import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -78,14 +77,16 @@ open class BaseActivity : AppCompatActivity() {
         Log.i(TAG, "onRestoreInstanceState  ${savedInstanceState.toString().subSequence(0, 4)}     ${persistentState.toString().subSequence(0, 4)}")
     }
 
-    fun gotoAuth(baseActivity: BaseActivity) {
+    fun gotoAuth(baseActivity: BaseActivity, startAgain: Boolean = false) {
         Log.i(TAG, "gotoAuth ${baseActivity.javaClass.simpleName}")
-        val intent = Intent(baseActivity, AuthActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        baseActivity.startActivity(intent)
-
-        super.finish()
-        baseActivity.finish()
-
+        if (startAgain) {
+            val intent = Intent(baseActivity, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            baseActivity.startActivity(intent)
+        }
+        if (baseActivity !is AuthActivity) {
+            super.finish()
+            baseActivity.finish()
+        }
     }
 }
