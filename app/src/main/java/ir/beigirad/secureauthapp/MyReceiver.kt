@@ -27,12 +27,23 @@ class MyReceiver(val baseActivity: BaseActivity) {
         override fun onReceive(p0: Context?, p1: Intent?) {
             when (p1?.action) {
                 screenFilter -> {
-                    baseActivity.gotoAuth(baseActivity,true)
+                    Log.i(TAG, "screen off")
+                    baseActivity.reqireAuth(baseActivity)
                 }
 
                 closeFilter -> {
-                    baseActivity.gotoAuth(baseActivity)
-
+                    when (p1.getStringExtra("reason")) {
+                        "homekey" -> {
+                            Log.i(TAG, "homekey pressed")
+                            baseActivity.reqireAuth(baseActivity)
+                        }
+                        "recentapps" -> {
+                            Log.i(TAG, "recentapps pressed")
+                            baseActivity.reqireAuth(baseActivity)
+                        }
+                        else -> {   //nothing
+                        }
+                    }
                 }
             }
         }

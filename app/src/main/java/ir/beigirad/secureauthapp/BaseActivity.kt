@@ -77,7 +77,7 @@ open class BaseActivity : AppCompatActivity() {
         Log.i(TAG, "onRestoreInstanceState  ${savedInstanceState.toString().subSequence(0, 4)}     ${persistentState.toString().subSequence(0, 4)}")
     }
 
-    fun gotoAuth(baseActivity: BaseActivity, startAgain: Boolean = false) {
+    fun reqireAuth(baseActivity: BaseActivity, startAgain: Boolean = false) {
         Log.i(TAG, "gotoAuth ${baseActivity.javaClass.simpleName}")
         if (startAgain) {
             val intent = Intent(baseActivity, AuthActivity::class.java)
